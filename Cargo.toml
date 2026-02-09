@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/sparc-core",
+    "crates/sparc-cli",
+    "crates/sparc-py",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["SPARC contributors"]
+license = "MIT"
+repository = "https://github.com/sparc-sc/sparc"
+
+[workspace.dependencies]
+# Core dependencies
+needletail = "0.5"
+rust-htslib = "0.44"
+rayon = "1.8"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+indicatif = "0.17"
+anyhow = "1"
+thiserror = "1"
+flate2 = "1"
+zstd = "0.13"
+ahash = "0.8"
+parking_lot = "0.12"
+log = "0.4"
+env_logger = "0.10"
+
+# PyO3
+pyo3 = { version = "0.20", features = ["extension-module"] }
+numpy = "0.20"
+
+# Testing
+tempfile = "3"

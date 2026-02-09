@@ -1,0 +1,88 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "sparc-sc"
+version = "0.1.0"
+description = "SPARC: Single-cell Pipeline Accelerated in Rust Core"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [
+    { name = "SPARC contributors" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+keywords = ["single-cell", "RNA-seq", "bioinformatics", "genomics", "SPARC"]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "pandas>=2.0",
+    "anndata>=0.10",
+    "scanpy>=1.9",
+    "matplotlib>=3.7",
+    "plotly>=5.18",
+]
+
+[project.optional-dependencies]
+web = [
+    "fastapi>=0.109",
+    "uvicorn>=0.27",
+    "celery>=5.3",
+    "redis>=5.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+all = ["sparc-sc[web,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/sparc-sc/sparc"
+Documentation = "https://sparc-sc.readthedocs.io"
+Repository = "https://github.com/sparc-sc/sparc"
+
+[project.scripts]
+sparc-web = "sparc.web:main"
+
+[tool.maturin]
+python-source = "python"
+module-name = "sparc._sparc_py"
+features = ["pyo3/extension-module"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests/python"]
+addopts = "-v --cov=sparc"

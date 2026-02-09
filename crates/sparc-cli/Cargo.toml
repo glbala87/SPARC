@@ -1,0 +1,22 @@
+[package]
+name = "sparc-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Command-line interface for SPARC single-cell analysis"
+
+[[bin]]
+name = "sparc"
+path = "src/main.rs"
+
+[dependencies]
+sparc-core = { path = "../sparc-core" }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+indicatif = { workspace = true }
+rayon = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }

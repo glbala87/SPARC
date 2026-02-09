@@ -1,0 +1,17 @@
+[package]
+name = "sparc-py"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Python bindings for SPARC single-cell analysis"
+
+[lib]
+name = "sparc_py"
+crate-type = ["cdylib"]
+
+[dependencies]
+sparc-core = { path = "../sparc-core" }
+pyo3 = { workspace = true }
+numpy = { workspace = true }
+rayon = { workspace = true }
